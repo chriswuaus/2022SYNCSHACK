@@ -8,10 +8,13 @@ CREATE TABLE units (
     unit_name VARCHAR(200) NOT NULL,
     unit_code VARCHAR(8) NOT NULL,
     unit_level SMALLINT NOT NULL,
+    credit_points SMALLINT NOT NULL,
+    academic_unit VARCHAR(100),
+    unit_description VARCHAR(1000),
     available_semesters VARCHAR(1000) NOT NULL
 );
 
-CREATE TABLE unit_prerequisits (
+CREATE TABLE unit_prerequisites (
     id UUID PRIMARY KEY,
     unit_id UUID NOT NULL,
     prerequisite_list VARCHAR(1000) NOT NULL,
