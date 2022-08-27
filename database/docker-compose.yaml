@@ -16,6 +16,7 @@ services:
       POSTGRES_DB: degree_planner
     volumes:
       - postgres-db-data:/var/lib/postgresql/data
+      - ./scripts:/scripts
 volumes:
   postgres-db-data:
     name: postgres-db-data
