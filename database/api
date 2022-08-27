@@ -10,7 +10,7 @@ returns:
 		cp: 6,
 		description: "blablabla this unit sucks",
 		academic_unit: "Computer Science"
-	 	semester: ["Semester 1", "Semester 2"]
+	 	semester: "Semester 1, Semester 2"
  	}, ...
 ]
 
@@ -29,8 +29,11 @@ returns:
  	name: "Systems Programming",
  	code: "COMP2017",
  	level: 2000,
- 	semester: ["Semester 1", "Semester 2"]
- 	groups: []
+ 	semester: "Semester 1, Semester 2"
+ 	level: 2000,
+	cp: 6,
+	description: "blablabla this unit sucks",
+	academic_unit: "Computer Science"
 }, ...
 
 ------------------------------------------------------------------------------------------

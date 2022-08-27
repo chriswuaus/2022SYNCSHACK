@@ -60,7 +60,7 @@ def postUnits():
             INSERT INTO units (id, unit_name, unit_code, unit_level, available_semesters, credit_points, academic_unit, unit_description)
             VALUES(gen_random_uuid(), %s, %s, %s, %s, %s, %s, %s) 
             """, 
-            (request.args["name"], request.args["code"], request.args["level"], request.args["semesters"], request.args["credit_points"], request.args["academic_unit"], request.args["unit_description"]))
+            (request.args["name"], request.args["code"], request.args["level"], request.args["semesters"], request.args["cp"], request.args["academic_unit"], request.args["description"]))
 
         result = jsonify('success')
         conn.commit()
