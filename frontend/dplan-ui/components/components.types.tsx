@@ -4,9 +4,26 @@ export type UnitCardProps = {
   unitRating: number;
 };
 
-export type SideBarProps = {
-}
+export type SideBarProps = {};
+
+export type ButtProps = {
+  highlighted: boolean;
+  link: string;
+};
+
+export type SearchProps = {
+  highlighted: boolean;
+  link: string;
+};
+
+export type DegreeProps = {
+  degreeName: string;
+  degreeYear: number;
+  semester: number;
+  major: string;
+  link: string;
+};
 
 export type SemesterBlockProps = {
   cards: UnitCardProps[];
-}
+};
