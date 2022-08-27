@@ -107,6 +107,18 @@ class UoSScraper:
         return self.mode_url
     
     #find which semesters current unit is offered in
+    def unit_offerings(self):
+        tree = self.uos_url_tree_setup()
+        req = tree.xpath("//div[@class='bodyContentContainer']//div[@id='currentOutlines']/ul/li")
+        new_list = []
+        if len(req) > 0:
+            for elem in req:
+                cur = elem.xpath("./a/text()")[0]
+                if cur.find("Remote") == -1:
+                    cur2 = cur.split()
+                    st_new = str(cur2[0] + " " + cur2[1])
+                    new_list.append(st_new[:-1])
+        return new_list
     
     #sets up the tree for use in scraping outline content (extension)
     def mode_url_tree_setup(self):
@@ -118,18 +130,19 @@ class UoSScraper:
     
 
 t1 = UoSScraper()
-t1.set_cur_url("https://www.sydney.edu.au/units/COMP2022")
-print(t1.get_unit_name())
-print(t1.get_unit_desc())
-print(t1.get_unit_code())
-print(t1.get_unit_academic_unit())
-print(t1.get_unit_cp_val())
-print(t1.get_unit_prereq())
-print(t1.get_unit_coreq())
-print(t1.get_unit_prohib())
-print(t1.get_assumed_knowledge())
-print(t1.set_cc_url())
-print(t1.get_unit_level())
+t1.set_cur_url("https://www.sydney.edu.au/units/MATH1005")
+# print(t1.get_unit_name())
+# print(t1.get_unit_desc())
+# print(t1.get_unit_code())
+# print(t1.get_unit_academic_unit())
+# print(t1.get_unit_cp_val())
+# print(t1.get_unit_prereq())
+# print(t1.get_unit_coreq())
+# print(t1.get_unit_prohib())
+# print(t1.get_assumed_knowledge())
+# print(t1.set_cc_url())
+# print(t1.get_unit_level())
+print(t1.unit_offerings())
 
 
 
