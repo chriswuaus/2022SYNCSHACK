@@ -9,6 +9,7 @@
 .name {
   font-weight: bold;
   font-size: 30px;
+  padding: 10px 0px;
 }
 .sem {
   font-size: 20px;
@@ -16,4 +17,5 @@
 }
 .major {
   font-size: 20px;
+  padding: 10px 0px;
 }

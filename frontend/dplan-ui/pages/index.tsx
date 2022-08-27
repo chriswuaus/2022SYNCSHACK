@@ -55,6 +55,7 @@ const Home: NextPage = () => {
           degreeYear={2022}
           semester={1}
           major="Data Science"
+          link="asdfaks"
         />
       </main>
     </div>

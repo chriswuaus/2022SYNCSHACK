@@ -21,4 +21,5 @@ export type DegreeProps = {
   degreeYear: number;
   semester: number;
   major: string;
+  link: string;
 };
