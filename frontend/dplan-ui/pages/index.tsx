@@ -6,6 +6,7 @@ import UnitCard from "../components/unit_card";
 import Plus from "../components/plus";
 import ReviewPublish from "../components/review_publish";
 import Review from "../components/review";
+import Butt from "../components/butt";
 
 import styles from "../styles/Home.module.css";
 
@@ -45,6 +46,7 @@ const Home: NextPage = () => {
         <Plus />
         <Review />
         <ReviewPublish />
+        <Butt highlighted={true} link="sdfgs" />
       </main>
     </div>
   );

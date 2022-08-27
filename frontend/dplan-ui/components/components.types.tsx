@@ -4,5 +4,9 @@ export type UnitCardProps = {
   unitRating: number;
 };
 
-export type SideBarProps = {
-}
+export type SideBarProps = {};
+
+export type ButtProps = {
+  highlighted: boolean;
+  link: string;
+};
