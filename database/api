@@ -33,7 +33,7 @@ returns:
 
 ------------------------------------------------------------------------------------------
 
-GET /unit-groups/{id}/units
+GET /unit-groups/{unit_id}/units
 Gets all units under a specified unit group
 returns:
 [
@@ -65,6 +65,147 @@ returns:
  	}, ...
 ]
 
+------------------------------------------------------------------------------------------
+
+GET /groups
+Get all groups.
+return:
+[
+	{
+		id: "cf80b95b-8010-439f-bc34-48b9586aadbe",
+	 	name: "Table A"
+	}, ...
+]
+
+------------------------------------------------------------------------------------------
+
+POST /groups
+Create a new group
+params:
+	group_id: string
+	name: string
+returns:
+{
+	id: "cf80b95b-8010-439f-bc34-48b9586aadbe",
+	name: "Table S"
+}
 
 
+-------------------------------------------------------------------------------------------
 
+GET /unit/{unit_id}/prerequisuites/prerequisite
+Get all prerequisuite units for a specified unit_id
+returns:
+[
+	{
+		prerequisuites: string
+ 	}, ...
+]
+
+--------------------------------------------------------------------------------------------
+
+POST /unit/{id}/prerequisuites/
+params:
+	id: string
+	prerequisuites: string
+returns:
+
+{
+	prerequisuites: "COMP2017 OR COMP2823"
+}
+
+--------------------------------------------------------------------------------------------
+
+GET /unit/{unit_id}/prohibitions/prohibition
+Get all prohibitions units for a specified unit_id
+returns:
+[
+	{
+		prohibition: string
+ 	}, ...
+]
+
+--------------------------------------------------------------------------------------------
+
+POST /unit/{unit_id}/prohibitions/
+params:
+	id: string
+	prohibitions: string
+returns:
+{
+	prohibitions: "COMP2017 OR COMP2823"
+}
+
+----------------------------------------------------------------------------------------------
+
+GET /unit/{unit_id}/corequisites/corequisite
+Get all corequisite units for a specified unit_id
+returns:
+[
+	{
+		corequisite: string
+ 	}, ...
+]
+
+--------------------------------------------------------------------------------------------
+
+POST /unit/{unit_id}/corequisites/
+params:
+	unit_id: string
+	corequisites: string
+returns:
+
+{
+	corequisites: "COMP2017 OR COMP2823"
+}
+
+----------------------------------------------------------------------------------------------
+
+GET /unit/{unit_id}/assumed_knowledge/assumed_knowledge
+Get all assumed_knowledge units for a specified unit_id
+returns:
+[
+	{
+		assumed_knowledge: string
+ 	}, ...
+]
+
+--------------------------------------------------------------------------------------------
+
+POST /unit/{unit_id}/assumed_knowledge/
+params:
+	id: string
+	assumed_knowledge: string
+returns:
+{
+	assumed_knowledge: "COMP2017 OR COMP2823"
+}
+
+----------------------------------------------------------------------------------------------
+
+GET /unit/{unit_id}/review
+Get all reviews for a specified unit_id
+returns:
+[
+	{
+		id: "cf80b95b-8010-439f-bc34-48b9586aadbe",
+		unit_id: "gf20b95b-eff0-g39f-bc34-48b9hh650dbe",
+		rating: 5,
+		comment: "easy wam booster"
+	}, ...
+]
+
+----------------------------------------------------------------------------------------------
+
+POST /unit/{unit_id}/review
+params:
+	unit_id: string,
+	rating: integer,
+	comment: string
+returns:
+{
+	id: "cf80b95b-8010-439f-bc34-48b9586aadbe",
+	unit_id: "gf20b95b-eff0-g39f-bc34-48b9hh650dbe",
+	rating: 5,
+	comment: "easy wam booster"
+}
