@@ -16,6 +16,8 @@ const Home: NextPage = () => {
   const addDegree = (degree: DegreeProps) => {
     setDegreePlans([...degreePlans, degree]);
   };
+  fetch("http://10.16.10.244:5000/units").then((v) => console.log(v));
+
   return (
     <div>
       <SideBar />
