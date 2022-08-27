@@ -1,0 +1,11 @@
+.rounded {
+    display: inline-flex;
+    flex-wrap: wrap;
+    border-radius: 30px;
+    background-color: #dbdbdb;
+    padding: 1em;
+}
+
+.coursetile {
+    margin: 1em;
+}

@@ -2,12 +2,37 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import SideBar from "../components/side_bar";
-import UnitCard from "../components/unit_card";
 import Plus from "../components/plus";
 
 import styles from "../styles/Home.module.css";
+import SemesterBlock from "../components/semester_block";
+import { SemesterBlockProps, UnitCardProps } from "../components/components.types";
 
 const Home: NextPage = () => {
+  const cardProps: UnitCardProps[] =
+    [
+      {
+        unitCode: "COMP2017",
+        unitName: "Systems Programming",
+        unitRating: 4,
+      },
+      {
+        unitCode: "COMP2123",
+        unitName: "D S and A",
+        unitRating: 5,
+      },
+      {
+        unitCode: "COMP2123",
+        unitName: "D S and A",
+        unitRating: 5,
+      },
+      {
+        unitCode: "COMP2123",
+        unitName: "D S and A",
+        unitRating: 5,
+      },
+    ]
+
   return (
     <div>
       <SideBar />
@@ -18,7 +43,7 @@ const Home: NextPage = () => {
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis dolorem fuga nobis cupiditate. Omnis voluptatem, corrupti eos, tempore laudantium ratione atque at obcaecati minima recusandae veritatis accusamus dolorem, praesentium eum nobis deserunt consequuntur sint corporis qui ea aut dolor. Sapiente alias ipsam, animi nesciunt distinctio optio pariatur qui dignissimos, dicta aliquam et natus ex totam mollitia. Deleniti culpa, sed repudiandae adipisci aspernatur dolor dolorum harum magni. Voluptas est cupiditate, quia necessitatibus iusto totam temporibus. Debitis, quisquam dolor. Alias exercitationem, dolorem neque autem suscipit praesentium quae et molestias cupiditate doloremque excepturi nulla porro adipisci nesciunt amet tempora perspiciatis tenetur qui asperiores.
         </p>
-        <UnitCard unitName="Prog" unitCode="COMP2017" unitRating={5} />
+          <SemesterBlock cards={cardProps} />
         <Plus />
       </main>
     </div>

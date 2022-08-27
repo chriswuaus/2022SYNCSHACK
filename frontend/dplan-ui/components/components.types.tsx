@@ -6,3 +6,7 @@ export type UnitCardProps = {
 
 export type SideBarProps = {
 }
+
+export type SemesterBlockProps = {
+  cards: UnitCardProps[];
+}
