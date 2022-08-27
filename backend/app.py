@@ -219,6 +219,36 @@ def getGroups():
 
         return jsonify(result)
 
+@app.get('/groups/group/<name>')
+def getGroupsByName(name):
+    try:
+        conn = psycopg2.connect(
+            dbname="postgres", user="postgres", password="postgres", host='0.0.0.0', port=5432)
+        cur = conn.cursor()
+
+        cur.execute("""
+            SELECT
+                id, 
+                group_name AS name
+            FROM groups
+            WHERE group_name = %s
+            """, (name,))
+
+        colnames = [desc[0] for desc in cur.description]
+        row = cur.fetchone()
+        result = {colnames[i]: row[i] for i in range(len(colnames))}
+
+    except (Exception, psycopg2.Error) as error:
+        result = {'error': str(error)}
+
+    finally:
+        # closing database connection.
+        if conn:
+            cur.close()
+            conn.close()
+
+        return jsonify(result)
+
 
 @app.post('/groups')
 def postGroups():
