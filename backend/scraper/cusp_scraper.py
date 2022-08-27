@@ -2,12 +2,12 @@ from lxml import html, etree
 import requests
 import sys
 
-class CUSPScraper():
+class CUSPScraper:
     def __init__(self, url):
         self.cusp = dict()
         self.url = url
         self.aelectives = [
-            "COMP2022/COMP2922",
+            "COMP2022",
             "COMP2017",
             "COMP3027",
             "COMP3888"
@@ -43,10 +43,8 @@ class CUSPScraper():
                 uos = row.xpath("./td[3]/a/text()")[0]
                 unit = uos.split(": ")[0]
                 if "a elective" in unit.lower():
-                    print("a elective")
                     units.append({unit:self.aelectives})
                 elif "adv. elective" in unit.lower():
-                    print("adv elective")
                     units.append({unit:self.advelectives})
                 else:
                     units.append(unit)

@@ -3,15 +3,18 @@ import psycopg2
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def index():
     return render_template('base.html')
+
 
 @app.get('/units')
 def getUnits():
     print("unit get")
     try:
-        conn = psycopg2.connect(dbname="postgres", user="postgres", password="postgres", host = '0.0.0.0', port = 5432)
+        conn = psycopg2.connect(
+            dbname="postgres", user="postgres", password="postgres", host='0.0.0.0', port=5432)
         cur = conn.cursor()
 
         cur.execute("""
@@ -32,9 +35,8 @@ def getUnits():
 
         result = []
         for row in rows:
-            current = {colnames[i]: row[i] for i in range(len(colnames))}    
+            current = {colnames[i]: row[i] for i in range(len(colnames))}
             result.append(current)
-        
 
     except (Exception, psycopg2.Error) as error:
         result = {'error': str(error)}
@@ -47,27 +49,28 @@ def getUnits():
 
         return jsonify(result)
 
+
 @app.post('/units')
 def postUnits():
     print("post unit")
-
     result = 'error'
     try:
-        conn = psycopg2.connect(dbname="postgres", user="postgres", password="postgres", host = '0.0.0.0', port = 5432)
+        conn = psycopg2.connect(
+            dbname="postgres", user="postgres", password="postgres", host='0.0.0.0', port=5432)
         cur = conn.cursor()
 
         cur.execute("""
             INSERT INTO units (id, unit_name, unit_code, unit_level, available_semesters, credit_points, academic_unit, unit_description)
             VALUES(gen_random_uuid(), %s, %s, %s, %s, %s, %s, %s) 
-            """, 
-            (request.args["name"], request.args["code"], request.args["level"], request.args["semesters"], request.args["cp"], request.args["academic_unit"], request.args["description"]))
+            """,
+                    (request.args["name"], request.args["code"], request.args["level"], request.args["semesters"], request.args["cp"], request.args["academic_unit"], request.args["description"]))
 
         result = jsonify('success')
         conn.commit()
 
     except (Exception, psycopg2.Error) as error:
         result = jsonify({'error': str(error)})
-        
+
     finally:
         # closing database connection.
         if conn:
@@ -75,12 +78,14 @@ def postUnits():
             conn.close()
 
         return result
-        
+
+
 @app.get('/unit-groups/<group_id>/units')
 def getUnitGroup(group_id):
-    
+
     try:
-        conn = psycopg2.connect(dbname="postgres", user="postgres", password="postgres", host = '0.0.0.0', port = 5432)
+        conn = psycopg2.connect(
+            dbname="postgres", user="postgres", password="postgres", host='0.0.0.0', port=5432)
         cur = conn.cursor()
 
         cur.execute("""
@@ -100,7 +105,7 @@ def getUnitGroup(group_id):
 
         result = []
         for row in rows:
-            current = {colnames[i]: row[i] for i in range(len(colnames))}    
+            current = {colnames[i]: row[i] for i in range(len(colnames))}
             result.append(current)
 
     except (Exception, psycopg2.Error) as error:
@@ -114,26 +119,28 @@ def getUnitGroup(group_id):
 
         return jsonify(result)
 
+
 @app.post('/unit-groups/<group_id>/units/<unit_id>')
 def postUnitGroup(group_id, unit_id):
 
     result = 'error'
     try:
-        conn = psycopg2.connect(dbname="postgres", user="postgres", password="postgres", host = '0.0.0.0', port = 5432)
+        conn = psycopg2.connect(
+            dbname="postgres", user="postgres", password="postgres", host='0.0.0.0', port=5432)
         cur = conn.cursor()
 
         cur.execute("""
             INSERT INTO unit_groups (id, group_id, unit_id)
             VALUES(gen_random_uuid(), %s, %s) 
-            """, 
-            (group_id, unit_id))
+            """,
+                    (group_id, unit_id))
 
         result = jsonify('success')
         conn.commit()
 
     except (Exception, psycopg2.Error) as error:
         result = jsonify({'error': str(error)})
-        
+
     finally:
         # closing database connection.
         if conn:
@@ -142,10 +149,12 @@ def postUnitGroup(group_id, unit_id):
 
         return result
 
+
 @app.get('/groups')
 def getGroups():
     try:
-        conn = psycopg2.connect(dbname="postgres", user="postgres", password="postgres", host = '0.0.0.0', port = 5432)
+        conn = psycopg2.connect(
+            dbname="postgres", user="postgres", password="postgres", host='0.0.0.0', port=5432)
         cur = conn.cursor()
 
         cur.execute("""
@@ -160,7 +169,7 @@ def getGroups():
 
         result = []
         for row in rows:
-            current = {colnames[i]: row[i] for i in range(len(colnames))}    
+            current = {colnames[i]: row[i] for i in range(len(colnames))}
             result.append(current)
 
     except (Exception, psycopg2.Error) as error:
@@ -174,26 +183,28 @@ def getGroups():
 
         return jsonify(result)
 
+
 @app.post('/groups')
 def postGroups():
 
     result = 'error'
     try:
-        conn = psycopg2.connect(dbname="postgres", user="postgres", password="postgres", host = '0.0.0.0', port = 5432)
+        conn = psycopg2.connect(
+            dbname="postgres", user="postgres", password="postgres", host='0.0.0.0', port=5432)
         cur = conn.cursor()
 
         cur.execute("""
             INSERT INTO groups (id, group_name)
             VALUES(gen_random_uuid(), %s) 
-            """, 
-            (request.args["name"],))
+            """,
+                    (request.args["name"],))
 
         result = jsonify('success')
         conn.commit()
 
     except (Exception, psycopg2.Error) as error:
         result = jsonify({'error': str(error)})
-        
+
     finally:
         # closing database connection.
         if conn:
@@ -206,7 +217,8 @@ def postGroups():
 @app.get('/units/<unit_id>/prerequisites')
 def getPrerequisites(unit_id):
     try:
-        conn = psycopg2.connect(dbname="postgres", user="postgres", password="postgres", host = '0.0.0.0', port = 5432)
+        conn = psycopg2.connect(
+            dbname="postgres", user="postgres", password="postgres", host='0.0.0.0', port=5432)
         cur = conn.cursor()
 
         cur.execute("""
@@ -220,9 +232,8 @@ def getPrerequisites(unit_id):
 
         result = []
         for row in rows:
-            current = {colnames[i]: row[i] for i in range(len(colnames))}    
+            current = {colnames[i]: row[i] for i in range(len(colnames))}
             result.append(current)
-        
 
     except (Exception, psycopg2.Error) as error:
         result = {'error': str(error)}
@@ -235,26 +246,28 @@ def getPrerequisites(unit_id):
 
         return jsonify(result)
 
+
 @app.post('/units/<unit_id>/prerequisites')
 def postPrerequisites(unit_id):
 
     result = 'error'
     try:
-        conn = psycopg2.connect(dbname="postgres", user="postgres", password="postgres", host = '0.0.0.0', port = 5432)
+        conn = psycopg2.connect(
+            dbname="postgres", user="postgres", password="postgres", host='0.0.0.0', port=5432)
         cur = conn.cursor()
 
         cur.execute("""
             INSERT INTO unit_prerequisites (id, unit_id, prerequisite_list)
             VALUES(gen_random_uuid(), %s, %s) 
-            """, 
-            (unit_id, request.args["prerequisite_list"]))
+            """,
+                    (unit_id, request.args["prerequisite_list"]))
 
         result = jsonify('success')
         conn.commit()
 
     except (Exception, psycopg2.Error) as error:
         result = jsonify({'error': str(error)})
-        
+
     finally:
         # closing database connection.
         if conn:
@@ -263,10 +276,12 @@ def postPrerequisites(unit_id):
 
         return result
 
+
 @app.get('/units/<unit_id>/prohibitions')
 def getProhibitions(unit_id):
     try:
-        conn = psycopg2.connect(dbname="postgres", user="postgres", password="postgres", host = '0.0.0.0', port = 5432)
+        conn = psycopg2.connect(
+            dbname="postgres", user="postgres", password="postgres", host='0.0.0.0', port=5432)
         cur = conn.cursor()
 
         cur.execute("""
@@ -280,9 +295,8 @@ def getProhibitions(unit_id):
 
         result = []
         for row in rows:
-            current = {colnames[i]: row[i] for i in range(len(colnames))}    
+            current = {colnames[i]: row[i] for i in range(len(colnames))}
             result.append(current)
-        
 
     except (Exception, psycopg2.Error) as error:
         result = {'error': str(error)}
@@ -295,26 +309,28 @@ def getProhibitions(unit_id):
 
         return jsonify(result)
 
+
 @app.post('/units/<unit_id>/prohibitions')
 def postProhibitions(unit_id):
 
     result = 'error'
     try:
-        conn = psycopg2.connect(dbname="postgres", user="postgres", password="postgres", host = '0.0.0.0', port = 5432)
+        conn = psycopg2.connect(
+            dbname="postgres", user="postgres", password="postgres", host='0.0.0.0', port=5432)
         cur = conn.cursor()
 
         cur.execute("""
             INSERT INTO unit_prohibitions (id, unit_id, prohibition_list)
             VALUES(gen_random_uuid(), %s, %s) 
-            """, 
-            (unit_id, request.args["prohibition_list"]))
+            """,
+                    (unit_id, request.args["prohibition_list"]))
 
         result = jsonify('success')
         conn.commit()
 
     except (Exception, psycopg2.Error) as error:
         result = jsonify({'error': str(error)})
-        
+
     finally:
         # closing database connection.
         if conn:
@@ -327,7 +343,8 @@ def postProhibitions(unit_id):
 @app.get('/units/<unit_id>/corequisites')
 def getCorequisites(unit_id):
     try:
-        conn = psycopg2.connect(dbname="postgres", user="postgres", password="postgres", host = '0.0.0.0', port = 5432)
+        conn = psycopg2.connect(
+            dbname="postgres", user="postgres", password="postgres", host='0.0.0.0', port=5432)
         cur = conn.cursor()
 
         cur.execute("""
@@ -341,9 +358,8 @@ def getCorequisites(unit_id):
 
         result = []
         for row in rows:
-            current = {colnames[i]: row[i] for i in range(len(colnames))}    
+            current = {colnames[i]: row[i] for i in range(len(colnames))}
             result.append(current)
-        
 
     except (Exception, psycopg2.Error) as error:
         result = {'error': str(error)}
@@ -356,26 +372,28 @@ def getCorequisites(unit_id):
 
         return jsonify(result)
 
+
 @app.post('/units/<unit_id>/corequisites')
 def postCorequisites(unit_id):
 
     result = 'error'
     try:
-        conn = psycopg2.connect(dbname="postgres", user="postgres", password="postgres", host = '0.0.0.0', port = 5432)
+        conn = psycopg2.connect(
+            dbname="postgres", user="postgres", password="postgres", host='0.0.0.0', port=5432)
         cur = conn.cursor()
 
         cur.execute("""
             INSERT INTO unit_corequisites (id, unit_id, corequisite_list)
             VALUES(gen_random_uuid(), %s, %s) 
-            """, 
-            (unit_id, request.args["corequisite_list"]))
+            """,
+                    (unit_id, request.args["corequisite_list"]))
 
         result = jsonify('success')
         conn.commit()
 
     except (Exception, psycopg2.Error) as error:
         result = jsonify({'error': str(error)})
-        
+
     finally:
         # closing database connection.
         if conn:
@@ -387,7 +405,8 @@ def postCorequisites(unit_id):
 @app.get('/units/<unit_id>/assumed_knowledge')
 def getAssumedKnowledge(unit_id):
     try:
-        conn = psycopg2.connect(dbname="postgres", user="postgres", password="postgres", host = '0.0.0.0', port = 5432)
+        conn = psycopg2.connect(
+            dbname="postgres", user="postgres", password="postgres", host='0.0.0.0', port=5432)
         cur = conn.cursor()
 
         cur.execute("""
@@ -401,9 +420,8 @@ def getAssumedKnowledge(unit_id):
 
         result = []
         for row in rows:
-            current = {colnames[i]: row[i] for i in range(len(colnames))}    
+            current = {colnames[i]: row[i] for i in range(len(colnames))}
             result.append(current)
-        
 
     except (Exception, psycopg2.Error) as error:
         result = {'error': str(error)}
@@ -416,26 +434,28 @@ def getAssumedKnowledge(unit_id):
 
         return jsonify(result)
 
+
 @app.post('/units/<unit_id>/assumed_knowledge')
 def postAssumedKnowledge(unit_id):
 
     result = 'error'
     try:
-        conn = psycopg2.connect(dbname="postgres", user="postgres", password="postgres", host = '0.0.0.0', port = 5432)
+        conn = psycopg2.connect(
+            dbname="postgres", user="postgres", password="postgres", host='0.0.0.0', port=5432)
         cur = conn.cursor()
 
         cur.execute("""
             INSERT INTO unit_assumed_knowledge (id, unit_id, assumed_knowledge_list)
             VALUES(gen_random_uuid(), %s, %s) 
-            """, 
-            (unit_id, request.args["assumed_knowledge_list"]))
+            """,
+                    (unit_id, request.args["assumed_knowledge_list"]))
 
         result = jsonify('success')
         conn.commit()
 
     except (Exception, psycopg2.Error) as error:
         result = jsonify({'error': str(error)})
-        
+
     finally:
         # closing database connection.
         if conn:
@@ -444,10 +464,12 @@ def postAssumedKnowledge(unit_id):
 
         return result
 
+
 @app.get('/units/<unit_id>/reviews')
 def getUnitReviews(unit_id):
     try:
-        conn = psycopg2.connect(dbname="postgres", user="postgres", password="postgres", host = '0.0.0.0', port = 5432)
+        conn = psycopg2.connect(
+            dbname="postgres", user="postgres", password="postgres", host='0.0.0.0', port=5432)
         cur = conn.cursor()
 
         cur.execute("""
@@ -464,7 +486,7 @@ def getUnitReviews(unit_id):
 
         result = []
         for row in rows:
-            current = {colnames[i]: row[i] for i in range(len(colnames))}    
+            current = {colnames[i]: row[i] for i in range(len(colnames))}
             result.append(current)
 
     except (Exception, psycopg2.Error) as error:
@@ -478,11 +500,13 @@ def getUnitReviews(unit_id):
 
         return jsonify(result)
 
+
 @app.post('/units/<unit_id>/reviews')
 def postUnitReviews(unit_id):
 
     try:
-        conn = psycopg2.connect(dbname="postgres", user="postgres", password="postgres", host = '0.0.0.0', port = 5432)
+        conn = psycopg2.connect(
+            dbname="postgres", user="postgres", password="postgres", host='0.0.0.0', port=5432)
         cur = conn.cursor()
 
         cur.execute("""
@@ -506,4 +530,4 @@ def postUnitReviews(unit_id):
 
 
 if __name__ == '__main__':
-	app.run(debug=True)
+    app.run(debug=True, port=5001)

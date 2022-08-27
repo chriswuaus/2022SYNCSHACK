@@ -17,6 +17,18 @@ class UoSScraper:
         tree = html.fromstring(req.content)
         return tree
 
+    def get_all(self):
+        self.get_assumed_knowledge()
+        self.get_unit_academic_unit()
+        self.get_unit_code()
+        self.get_unit_coreq()
+        self.get_unit_cp_val()
+        self.get_unit_desc()
+        self.get_unit_level()
+        self.get_unit_name()
+        self.get_unit_prereq()
+        self.get_unit_prohib()
+
     #scrapes unit name
     def get_unit_name(self):
         tree = self.uos_url_tree_setup()
@@ -28,13 +40,13 @@ class UoSScraper:
     def get_unit_desc(self):
         tree = self.uos_url_tree_setup()
         req = tree.xpath("//div[@class='pageTitleModule']//div[@class='b-summary']/p/text()")
-        return req[0]
+        return req[0][0:999]
 
     #scrapes unit code
     def get_unit_code(self):
         tree = self.uos_url_tree_setup()
         req = tree.xpath("//div[@id='academicDetails']//tbody/tr[1]/td/text()")
-        return req[0][4:]
+        return req[0]
 
     #add way to determine unit level
     def get_unit_level(self):
