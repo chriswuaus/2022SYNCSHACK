@@ -18,3 +18,8 @@
   border-radius: 25px;
   padding: 20px;
 }
+
+.container svg {
+  fill: white;
+  width: 30px;
+}

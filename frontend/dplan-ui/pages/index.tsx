@@ -5,6 +5,7 @@ import SideBar from "../components/side_bar";
 import UnitCard from "../components/unit_card";
 import Plus from "../components/plus";
 import ReviewPublish from "../components/review_publish";
+import Review from "../components/review";
 
 import styles from "../styles/Home.module.css";
 
@@ -42,6 +43,7 @@ const Home: NextPage = () => {
         </p>
         <UnitCard unitName="Prog" unitCode="COMP2017" unitRating={5} />
         <Plus />
+        <Review />
         <ReviewPublish />
       </main>
     </div>
