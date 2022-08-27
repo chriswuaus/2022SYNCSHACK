@@ -1,0 +1,70 @@
+GET /units
+Gets all units
+returns:
+[
+ 	{
+	 	id: "cf80b95b-8010-439f-bc34-48b9586aadbe",
+	 	name: "Systems Programming",
+	 	code: "COMP2017",
+	 	level: 2000,
+	 	semester: ["Semester 1", "Semester 2"]
+	 	groups: ["Table A", "Table S"]
+ 	}, ...
+]
+
+------------------------------------------------------------------------------------------
+
+POST /units
+Creates a new unit
+params:
+	name: string
+	code: string
+	level: int
+	semesters: array of stirngs
+returns:
+{
+ 	id: "cf80b95b-8010-439f-bc34-48b9586aadbe",
+ 	name: "Systems Programming",
+ 	code: "COMP2017",
+ 	level: 2000,
+ 	semester: ["Semester 1", "Semester 2"]
+ 	groups: []
+}, ...
+
+------------------------------------------------------------------------------------------
+
+GET /unit-groups/{id}/units
+Gets all units under a specified unit group
+returns:
+[
+	{
+	 	id: "cf80b95b-8010-439f-bc34-48b9586aadbe",
+	 	name: "Systems Programming",
+	 	code: "COMP2017",
+	 	level: 2000,
+	 	semester: ["Semester 1", "Semester 2"]
+	 	groups: ["Table A", "Table S"]
+ 	}, ...
+]
+
+------------------------------------------------------------------------------------------
+
+POST /unit-groups/{group_id}/unit/{unit_id}
+params: 
+	group_id: string
+	unit_id: string
+returns:
+[
+ 	{
+	 	id: "cf80b95b-8010-439f-bc34-48b9586aadbe",
+	 	name: "Systems Programming",
+	 	code: "COMP2017",
+	 	level: 2000,
+	 	semester: ["Semester 1", "Semester 2"]
+	 	groups: ["Table A", "Table S"]
+ 	}, ...
+]
+
+
+
+
