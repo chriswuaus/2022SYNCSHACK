@@ -3,3 +3,6 @@ export type UnitCardProps = {
   unitName: string;
   unitRating: number;
 };
+
+export type SideBarProps = {
+}

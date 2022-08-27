@@ -1,0 +1,12 @@
+.aside {
+    padding: 1em;
+    width: 10em;
+    height: 100%;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: blueviolet;
+    color: white;
+    border-radius: 0% 5% 5% 0%;
+}
