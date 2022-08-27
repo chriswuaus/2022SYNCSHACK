@@ -10,3 +10,8 @@ export type ButtProps = {
   highlighted: boolean;
   link: string;
 };
+
+export type SearchProps = {
+  highlighted: boolean;
+  link: string;
+};
