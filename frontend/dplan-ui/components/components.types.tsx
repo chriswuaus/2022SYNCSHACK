@@ -24,6 +24,10 @@ export type DegreeProps = {
   link: string;
 };
 
+export type DegreeEntryProps = {
+  onAdd: (degree: DegreeProps) => void
+}
+
 export type SemesterBlockProps = {
   cards: UnitCardProps[];
 };

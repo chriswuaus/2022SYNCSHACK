@@ -15,6 +15,39 @@
   }
 }
 
+.modal {
+  display: none;
+  position: absolute;
+  max-width: fit-content;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border: 1px solid;
+  padding: 30px;
+  border-radius: 30px;
+}
+
+.modal-show {
+  display: block;
+  background-color: white;
+}
+
+.align-end {
+  position: absolute;
+  top: 2%;
+  right: 5%;
+}
+
+.close-button {
+  border: none;
+  background-color: transparent;
+}
+
+.close-button:hover {
+  background-color: #eaeaea;
+  border-radius: 10px;
+}
+
 .footer {
   display: flex;
   flex: 1;
