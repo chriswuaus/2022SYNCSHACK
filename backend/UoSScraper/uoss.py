@@ -124,8 +124,8 @@ class UoSScraper:
     
     
 
-t1 = UoSScraper()
-t1.set_cur_url("https://www.sydney.edu.au/units/MATH1005")
+# t1 = UoSScraper()
+# t1.set_cur_url("https://www.sydney.edu.au/units/MATH1005")
 # print(t1.get_unit_name())
 # print(t1.get_unit_desc())
 # print(t1.get_unit_code())
@@ -137,7 +137,7 @@ t1.set_cur_url("https://www.sydney.edu.au/units/MATH1005")
 # print(t1.get_assumed_knowledge())
 # print(t1.set_cc_url())
 # print(t1.get_unit_level())
-print(t1.unit_offerings())
+# print(t1.unit_offerings())
 
 
 
