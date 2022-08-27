@@ -17,11 +17,12 @@ class UoSScraper:
         tree = html.fromstring(req.content)
         return tree
 
-    #scrapes unit code and name
+    #scrapes unit name
     def get_unit_name(self):
         tree = self.uos_url_tree_setup()
         req = tree.xpath("//h1[@class='pageTitle b-student-site__section-title']/text()")
-        return req[0]
+        namespl = req[0].split(" ", 1)
+        return namespl[1]
 
     #scrapes unit description
     def get_unit_desc(self):
@@ -33,7 +34,13 @@ class UoSScraper:
     def get_unit_code(self):
         tree = self.uos_url_tree_setup()
         req = tree.xpath("//div[@id='academicDetails']//tbody/tr[1]/td/text()")
-        return req[0]
+        return req[0][4:]
+
+    #add way to determine unit level
+    def get_unit_level(self):
+        tree = self.uos_url_tree_setup()
+        req = tree.xpath("//div[@id='academicDetails']//tbody/tr[1]/td/text()")
+        return req[0][4]
 
     #scrapes academic unit
     def get_unit_academic_unit(self):
@@ -51,27 +58,55 @@ class UoSScraper:
     def get_unit_prereq(self):
         tree = self.uos_url_tree_setup()
         req = tree.xpath("//div[@id='enrolmentRules']//tbody/tr[1]/td/text()")
-        return req[0]
+        req_spl1 = req[0].split("AND")
+        req_spl2 = "and".join(req_spl1)
+        req_spl3 = req_spl2.split("and")
+        return req_spl3
     
     #scrapes all co-requisites for the unit (single string)
     def get_unit_coreq(self):
         tree = self.uos_url_tree_setup()
         req = tree.xpath("//div[@id='enrolmentRules']//tbody/tr[2]/td/text()")
-        return req[0]
+        req_spl1 = req[0].split("AND")
+        req_spl2 = "and".join(req_spl1)
+        req_spl3 = req_spl2.split("and")
+        return req_spl3
 
-    #scrapes all prerequisites for the unit (single string)
+    #scrapes all prohibitions for the unit (single string)
     def get_unit_prohib(self):
         tree = self.uos_url_tree_setup()
         req = tree.xpath("//div[@id='enrolmentRules']//tbody/tr[3]/td/text()")
-        return req[0]
+        req_spl1 = req[0].split("AND")
+        req_spl2 = "and".join(req_spl1)
+        req_spl3 = req_spl2.split("and")
+        return req_spl3
+
+    #scrapes all assumned knowledge areas for the unit
+    def get_assumed_knowledge(self):
+        tree = self.uos_url_tree_setup()
+        req = tree.xpath("//div[@id='enrolmentRules']//tbody/tr[4]/td/text()")
+        req_spl1 = req[0].split("AND")
+        req_spl2 = "and".join(req_spl1)
+        req_spl3 = req_spl2.split("and")
+        return req_spl3
+
+    #scrapes semesters in which the unit is available for (including intensives)
+    def get_offering_periods():
+        tree = self.uos_url_tree_setup()
+        req = tree.xpath
 
     #set modeURL to CC for scraping mode specific information (extension) i.e. semester weekly schedule, assessment schedule
     def set_cc_url(self):
         tree = self.uos_url_tree_setup()
         req = tree.xpath("//div[@class='bodyContentContainer']//div[@id='currentOutlines']/ul/li[1]//@href")
-        self.modeURL = self.mode_url + req[0]
+        if len(req) != 0:
+            self.mode_url = self.mode_url + req[0]
+        else:
+            self.mode_url = None
 
-        return self.modeURL
+        return self.mode_url
+    
+    #find which semesters current unit is offered in
     
     #sets up the tree for use in scraping outline content (extension)
     def mode_url_tree_setup(self):
@@ -82,17 +117,19 @@ class UoSScraper:
     
     
 
-# t1 = UoSScraper()
-# t1.set_cur_url("https://www.sydney.edu.au/units/ISYS2120")
-# print(t1.get_unit_name())
-# print(t1.get_unit_desc())
-# print(t1.get_unit_code())
-# print(t1.get_unit_academic_unit())
-# print(t1.get_unit_cp_val())
-# print(t1.get_unit_prereq())
-# print(t1.get_unit_coreq())
-# print(t1.get_unit_prohib())
-# print(t1.set_cc_url())
+t1 = UoSScraper()
+t1.set_cur_url("https://www.sydney.edu.au/units/COMP2022")
+print(t1.get_unit_name())
+print(t1.get_unit_desc())
+print(t1.get_unit_code())
+print(t1.get_unit_academic_unit())
+print(t1.get_unit_cp_val())
+print(t1.get_unit_prereq())
+print(t1.get_unit_coreq())
+print(t1.get_unit_prohib())
+print(t1.get_assumed_knowledge())
+print(t1.set_cc_url())
+print(t1.get_unit_level())
 
 
 
