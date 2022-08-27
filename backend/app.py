@@ -20,6 +20,9 @@ def getUnits():
                 unit_name AS name, 
                 unit_code AS code, 
                 unit_level AS level, 
+                credit_points AS cp,
+                unit_description AS description,
+                academic_unit,
                 available_semesters
             FROM units
             """)
@@ -54,10 +57,10 @@ def postUnits():
         cur = conn.cursor()
 
         cur.execute("""
-            INSERT INTO units (id, unit_name, unit_code, unit_level, available_semesters)
-            VALUES(gen_random_uuid(), %s, %s, %s, %s) 
+            INSERT INTO units (id, unit_name, unit_code, unit_level, available_semesters, credit_points, academic_unit, unit_description)
+            VALUES(gen_random_uuid(), %s, %s, %s, %s, %s, %s, %s) 
             """, 
-            (request.args["name"], request.args["code"], request.args["level"], request.args["semesters"]))
+            (request.args["name"], request.args["code"], request.args["level"], request.args["semesters"], request.args["credit_points"], request.args["academic_unit"], request.args["unit_description"]))
 
         result = jsonify('success')
         conn.commit()
@@ -111,7 +114,7 @@ def getUnitGroup(group_id):
 
         return jsonify(result)
 
-@app.post('/unit-groups/<group_id>/unit/<unit_id>')
+@app.post('/unit-groups/<group_id>/units/<unit_id>')
 def postUnitGroup(group_id, unit_id):
 
     result = 'error'
@@ -200,7 +203,7 @@ def postGroups():
         return result
 
 
-@app.get('/unit/<unit_id>/prerequisite/')
+@app.get('/unit/<unit_id>/prerequisites')
 def getPrerequisites(unit_id):
     try:
         conn = psycopg2.connect(dbname="postgres", user="postgres", password="postgres", host = '0.0.0.0', port = 5432)
@@ -208,8 +211,8 @@ def getPrerequisites(unit_id):
 
         cur.execute("""
             SELECT prerequisite_list
-            FROM unit_prerequisits
-            WHERE unit_prerequisits.unit_id = unit_id
+            FROM unit_prerequisites
+            WHERE unit_prerequisites.unit_id = unit_id
             """)
 
         colnames = [desc[0] for desc in cur.description]
@@ -232,7 +235,7 @@ def getPrerequisites(unit_id):
 
         return jsonify(result)
 
-@app.post('/units/<unit_id>/prerequisites/')
+@app.post('/units/<unit_id>/prerequisites')
 def postPrerequisites(unit_id):
 
     result = 'error'
@@ -241,7 +244,7 @@ def postPrerequisites(unit_id):
         cur = conn.cursor()
 
         cur.execute("""
-            INSERT INTO unit_prerequisits (id, unit_id, prerequisite_list)
+            INSERT INTO unit_prerequisites (id, unit_id, prerequisite_list)
             VALUES(gen_random_uuid(), %s, %s) 
             """, 
             (unit_id, request.args["prerequisite_list"]))
@@ -260,7 +263,7 @@ def postPrerequisites(unit_id):
 
         return result
 
-@app.get('/unit/<unit_id>/prohibition_list/')
+@app.get('/unit/<unit_id>/prohibitions')
 def getProhibitions(unit_id):
     try:
         conn = psycopg2.connect(dbname="postgres", user="postgres", password="postgres", host = '0.0.0.0', port = 5432)
@@ -292,7 +295,7 @@ def getProhibitions(unit_id):
 
         return jsonify(result)
 
-@app.post('/units/<unit_id>/prohibitions/')
+@app.post('/units/<unit_id>/prohibitions')
 def postProhibitions(unit_id):
 
     result = 'error'
@@ -321,7 +324,7 @@ def postProhibitions(unit_id):
         return result
 
 
-@app.get('/unit/<unit_id>/corequisite/')
+@app.get('/unit/<unit_id>/corequisites')
 def getCorequisites(unit_id):
     try:
         conn = psycopg2.connect(dbname="postgres", user="postgres", password="postgres", host = '0.0.0.0', port = 5432)
@@ -353,7 +356,7 @@ def getCorequisites(unit_id):
 
         return jsonify(result)
 
-@app.post('/units/<unit_id>/corequisites/')
+@app.post('/units/<unit_id>/corequisites')
 def postCorequisites(unit_id):
 
     result = 'error'
@@ -381,7 +384,7 @@ def postCorequisites(unit_id):
 
         return result
 
-@app.get('/unit/<unit_id>/assumed_knowledge/')
+@app.get('/unit/<unit_id>/assumed_knowledge')
 def getAssumedKnowledge(unit_id):
     try:
         conn = psycopg2.connect(dbname="postgres", user="postgres", password="postgres", host = '0.0.0.0', port = 5432)
@@ -413,7 +416,7 @@ def getAssumedKnowledge(unit_id):
 
         return jsonify(result)
 
-@app.post('/units/<unit_id>/assumed_knowledge/')
+@app.post('/units/<unit_id>/assumed_knowledge')
 def postAssumedKnowledge(unit_id):
 
     result = 'error'

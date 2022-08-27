@@ -9,8 +9,8 @@ CREATE TABLE units (
     unit_code VARCHAR(8) NOT NULL,
     unit_level SMALLINT NOT NULL,
     credit_points SMALLINT NOT NULL,
-    academic_unit VARCHAR(100),
-    unit_description VARCHAR(1000),
+    academic_unit VARCHAR(100) NOT NULL,
+    unit_description VARCHAR(1000) NOT NULL,
     available_semesters VARCHAR(1000) NOT NULL
 );
 

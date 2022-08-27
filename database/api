@@ -7,8 +7,10 @@ returns:
 	 	name: "Systems Programming",
 	 	code: "COMP2017",
 	 	level: 2000,
+		cp: 6,
+		description: "blablabla this unit sucks",
+		academic_unit: "Computer Science"
 	 	semester: ["Semester 1", "Semester 2"]
-	 	groups: ["Table A", "Table S"]
  	}, ...
 ]
 
@@ -49,7 +51,7 @@ returns:
 
 ------------------------------------------------------------------------------------------
 
-POST /unit-groups/{group_id}/unit/{unit_id}
+POST /unit-groups/{group_id}/units/{unit_id}
 params: 
 	group_id: string
 	unit_id: string
@@ -93,7 +95,7 @@ returns:
 
 -------------------------------------------------------------------------------------------
 
-GET /unit/{unit_id}/prerequisuites/prerequisite
+GET /unit/{unit_id}/prerequisuites
 Get all prerequisuite units for a specified unit_id
 returns:
 [
@@ -104,7 +106,7 @@ returns:
 
 --------------------------------------------------------------------------------------------
 
-POST /unit/{id}/prerequisuites/
+POST /unit/{id}/prerequisites/
 params:
 	id: string
 	prerequisuites: string
@@ -116,7 +118,7 @@ returns:
 
 --------------------------------------------------------------------------------------------
 
-GET /unit/{unit_id}/prohibitions/prohibition
+GET /unit/{unit_id}/prohibitions
 Get all prohibitions units for a specified unit_id
 returns:
 [
@@ -127,7 +129,7 @@ returns:
 
 --------------------------------------------------------------------------------------------
 
-POST /unit/{unit_id}/prohibitions/
+POST /unit/{unit_id}/prohibitions
 params:
 	id: string
 	prohibitions: string
@@ -138,7 +140,7 @@ returns:
 
 ----------------------------------------------------------------------------------------------
 
-GET /unit/{unit_id}/corequisites/corequisite
+GET /unit/{unit_id}/corequisites
 Get all corequisite units for a specified unit_id
 returns:
 [
@@ -149,7 +151,7 @@ returns:
 
 --------------------------------------------------------------------------------------------
 
-POST /unit/{unit_id}/corequisites/
+POST /unit/{unit_id}/corequisites
 params:
 	unit_id: string
 	corequisites: string
@@ -161,7 +163,7 @@ returns:
 
 ----------------------------------------------------------------------------------------------
 
-GET /unit/{unit_id}/assumed_knowledge/assumed_knowledge
+GET /unit/{unit_id}/assumed_knowledge
 Get all assumed_knowledge units for a specified unit_id
 returns:
 [
@@ -172,7 +174,7 @@ returns:
 
 --------------------------------------------------------------------------------------------
 
-POST /unit/{unit_id}/assumed_knowledge/
+POST /unit/{unit_id}/assumed_knowledge
 params:
 	id: string
 	assumed_knowledge: string
