@@ -58,37 +58,41 @@ class UoSScraper:
     def get_unit_prereq(self):
         tree = self.uos_url_tree_setup()
         req = tree.xpath("//div[@id='enrolmentRules']//tbody/tr[1]/td/text()")
-        req_spl1 = req[0].split("AND")
-        req_spl2 = "and".join(req_spl1)
-        req_spl3 = req_spl2.split("and")
-        return req_spl3
+        if (len(req) > 0):
+            req_spl1 = req[0].split("AND")
+            req_spl2 = "and".join(req_spl1)
+            req_spl3 = req_spl2.split("and")
+            return req_spl3
     
     #scrapes all co-requisites for the unit (single string)
     def get_unit_coreq(self):
         tree = self.uos_url_tree_setup()
         req = tree.xpath("//div[@id='enrolmentRules']//tbody/tr[2]/td/text()")
-        req_spl1 = req[0].split("AND")
-        req_spl2 = "and".join(req_spl1)
-        req_spl3 = req_spl2.split("and")
-        return req_spl3
+        if (len(req) > 0):
+            req_spl1 = req[0].split("AND")
+            req_spl2 = "and".join(req_spl1)
+            req_spl3 = req_spl2.split("and")
+            return req_spl3
 
     #scrapes all prohibitions for the unit (single string)
     def get_unit_prohib(self):
         tree = self.uos_url_tree_setup()
         req = tree.xpath("//div[@id='enrolmentRules']//tbody/tr[3]/td/text()")
-        req_spl1 = req[0].split("AND")
-        req_spl2 = "and".join(req_spl1)
-        req_spl3 = req_spl2.split("and")
-        return req_spl3
+        if (len(req) > 0):
+            req_spl1 = req[0].split("AND")
+            req_spl2 = "and".join(req_spl1)
+            req_spl3 = req_spl2.split("and")
+            return req_spl3
 
     #scrapes all assumned knowledge areas for the unit
     def get_assumed_knowledge(self):
         tree = self.uos_url_tree_setup()
         req = tree.xpath("//div[@id='enrolmentRules']//tbody/tr[4]/td/text()")
-        req_spl1 = req[0].split("AND")
-        req_spl2 = "and".join(req_spl1)
-        req_spl3 = req_spl2.split("and")
-        return req_spl3
+        if (len(req) > 0):
+            req_spl1 = req[0].split("AND")
+            req_spl2 = "and".join(req_spl1)
+            req_spl3 = req_spl2.split("and")
+            return req_spl3
 
     #set modeURL to CC for scraping mode specific information (extension) i.e. semester weekly schedule, assessment schedule
     def set_cc_url(self):
@@ -125,7 +129,7 @@ class UoSScraper:
     
 
 # t1 = UoSScraper()
-# t1.set_cur_url("https://www.sydney.edu.au/units/MATH1005")
+# t1.set_cur_url("https://www.sydney.edu.au/units/COMP2017")
 # print(t1.get_unit_name())
 # print(t1.get_unit_desc())
 # print(t1.get_unit_code())
