@@ -1,0 +1,20 @@
+.code {
+  color: whitesmoke;
+  font-size: 34px;
+  font-weight: bold;
+}
+.name {
+  color: whitesmoke;
+
+  font-size: 20px;
+  font-weight: lighter;
+  padding: 10px 0px;
+}
+
+.container {
+  display: inline-flex;
+  flex-direction: column;
+  background-color: rgb(71, 71, 164);
+  border-radius: 25px;
+  padding: 20px;
+}
