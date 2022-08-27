@@ -4,8 +4,19 @@ import sys
 
 class CUSPScraper():
     def __init__(self, url):
-        self.url = url
         self.cusp = dict()
+        self.url = url
+        self.aelectives = [
+            "COMP2022/COMP2922",
+            "COMP2017",
+            "COMP3027",
+            "COMP3888"
+        ]
+        self.advelectives = [
+            "COMP5045",
+            "COMP5048",
+            "COMP5349"
+        ]
         self.html_tree = self.get_html_content()
 
     def run_all(self):
@@ -31,7 +42,14 @@ class CUSPScraper():
             for row in rows:
                 uos = row.xpath("./td[3]/a/text()")[0]
                 unit = uos.split(": ")[0]
-                units.append(unit)
+                if "a elective" in unit.lower():
+                    print("a elective")
+                    units.append({unit:self.aelectives})
+                elif "adv. elective" in unit.lower():
+                    print("adv elective")
+                    units.append({unit:self.advelectives})
+                else:
+                    units.append(unit)
             if sem_count % 2 == 0:
                 semester = "Semester2"
             else:
@@ -40,3 +58,8 @@ class CUSPScraper():
             key_year = "Year" + str(curr_year)
             self.cusp[key_year][semester] = units
             sem_count += 1
+
+# url = "https://cusp.sydney.edu.au/students/view-degree-page/degree_id/754"
+# cusp = CUSPScraper(url)
+# cusp.run_all()
+# print(cusp.cusp)
