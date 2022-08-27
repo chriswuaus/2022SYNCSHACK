@@ -15,3 +15,10 @@ export type SearchProps = {
   highlighted: boolean;
   link: string;
 };
+
+export type DegreeProps = {
+  degreeName: string;
+  degreeYear: number;
+  semester: number;
+  major: string;
+};

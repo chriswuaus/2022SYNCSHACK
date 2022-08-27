@@ -8,6 +8,7 @@ import ReviewPublish from "../components/review_publish";
 import Review from "../components/review";
 import Butt from "../components/butt";
 import Search from "../components/search";
+import Degree from "../components/degree";
 
 import styles from "../styles/Home.module.css";
 
@@ -49,6 +50,12 @@ const Home: NextPage = () => {
         <ReviewPublish />
         {/* <Butt highlighted={true} link="sdfgs" /> */}
         <Search highlighted={true} link="sdfad" />
+        <Degree
+          degreeName="Bachelor of Advanced Computing"
+          degreeYear={2022}
+          semester={1}
+          major="Data Science"
+        />
       </main>
     </div>
   );
