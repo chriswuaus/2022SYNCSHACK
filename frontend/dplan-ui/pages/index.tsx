@@ -3,6 +3,8 @@ import Head from "next/head";
 import Image from "next/image";
 import SideBar from "../components/side_bar";
 import UnitCard from "../components/unit_card";
+import Plus from "../components/plus";
+
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -17,6 +19,7 @@ const Home: NextPage = () => {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis dolorem fuga nobis cupiditate. Omnis voluptatem, corrupti eos, tempore laudantium ratione atque at obcaecati minima recusandae veritatis accusamus dolorem, praesentium eum nobis deserunt consequuntur sint corporis qui ea aut dolor. Sapiente alias ipsam, animi nesciunt distinctio optio pariatur qui dignissimos, dicta aliquam et natus ex totam mollitia. Deleniti culpa, sed repudiandae adipisci aspernatur dolor dolorum harum magni. Voluptas est cupiditate, quia necessitatibus iusto totam temporibus. Debitis, quisquam dolor. Alias exercitationem, dolorem neque autem suscipit praesentium quae et molestias cupiditate doloremque excepturi nulla porro adipisci nesciunt amet tempora perspiciatis tenetur qui asperiores.
         </p>
         <UnitCard unitName="Prog" unitCode="COMP2017" unitRating={5} />
+        <Plus />
       </main>
     </div>
   );

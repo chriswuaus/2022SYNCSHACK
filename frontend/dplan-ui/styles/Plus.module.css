@@ -1,0 +1,8 @@
+.button {
+  /* display: inline-flex; */
+  background-color: greenyellow;
+  color: brown;
+  border-radius: 25px;
+  font-size: 50px;
+  border: None;
+}
