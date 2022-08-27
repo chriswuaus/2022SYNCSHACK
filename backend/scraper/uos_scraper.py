@@ -40,13 +40,13 @@ class UoSScraper:
     def get_unit_desc(self):
         tree = self.uos_url_tree_setup()
         req = tree.xpath("//div[@class='pageTitleModule']//div[@class='b-summary']/p/text()")
-        return req[0]
+        return req[0][0:999]
 
     #scrapes unit code
     def get_unit_code(self):
         tree = self.uos_url_tree_setup()
         req = tree.xpath("//div[@id='academicDetails']//tbody/tr[1]/td/text()")
-        return req[0][4:]
+        return req[0]
 
     #add way to determine unit level
     def get_unit_level(self):
