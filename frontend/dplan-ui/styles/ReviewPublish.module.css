@@ -1,0 +1,37 @@
+.text_entry {
+  height: 200px;
+  width: 700px;
+  border-radius: 20px;
+  border: 2px solid #cdcdcd;
+  border-color: rgba(107, 130, 223, 0.776);
+  border: None;
+  background-color: rgb(187, 202, 214);
+  font-size: 14px;
+}
+.header {
+  font-size: 34px;
+}
+
+.title {
+  display: flex;
+}
+
+.stars {
+  display: flex;
+  padding-left: 30px;
+}
+
+.publish {
+  border: None;
+  background-color: rgb(138, 138, 235);
+  border-radius: 20px;
+  color: whitesmoke;
+  font-size: 16px;
+  padding: 10px;
+  /* font-weight: lighter; */
+  margin-top: 30px;
+}
+
+.publish:hover {
+  background-color: rgb(70, 70, 186);
+}
