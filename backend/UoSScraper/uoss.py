@@ -128,20 +128,20 @@ class UoSScraper:
     
     
 
-t1 = UoSScraper()
-t1.set_cur_url("https://www.sydney.edu.au/units/COMP2017")
-print(t1.get_unit_name())
-print(t1.get_unit_desc())
-print(t1.get_unit_code())
-print(t1.get_unit_academic_unit())
-print(t1.get_unit_cp_val())
-print(t1.get_unit_prereq())
-print(t1.get_unit_coreq())
-print(t1.get_unit_prohib())
-print(t1.get_assumed_knowledge())
-print(t1.set_cc_url())
-print(t1.get_unit_level())
-print(t1.unit_offerings())
+# t1 = UoSScraper()
+# t1.set_cur_url("https://www.sydney.edu.au/units/COMP2017")
+# print(t1.get_unit_name())
+# print(t1.get_unit_desc())
+# print(t1.get_unit_code())
+# print(t1.get_unit_academic_unit())
+# print(t1.get_unit_cp_val())
+# print(t1.get_unit_prereq())
+# print(t1.get_unit_coreq())
+# print(t1.get_unit_prohib())
+# print(t1.get_assumed_knowledge())
+# print(t1.set_cc_url())
+# print(t1.get_unit_level())
+# print(t1.unit_offerings())
 
 
 
