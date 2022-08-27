@@ -49,6 +49,42 @@ def getUnits():
 
         return jsonify(result)
 
+@app.get('/units/code/<unit_code>')
+def getUnitByCode(unit_code):
+    print("unit get")
+    try:
+        conn = psycopg2.connect(
+            dbname="postgres", user="postgres", password="postgres", host='0.0.0.0', port=5432)
+        cur = conn.cursor()
+
+        cur.execute("""
+            SELECT
+                id, 
+                unit_name AS name, 
+                unit_code AS code, 
+                unit_level AS level, 
+                credit_points AS cp,
+                unit_description AS description,
+                academic_unit,
+                available_semesters
+            FROM units
+            WHERE unit_code = %s
+            """, (unit_code,))
+
+        colnames = [desc[0] for desc in cur.description]
+        row = cur.fetchone()
+        result = {colnames[i]: row[i] for i in range(len(colnames))}
+
+    except (Exception, psycopg2.Error) as error:
+        result = {'error': str(error)}
+
+    finally:
+        # closing database connection.
+        if conn:
+            cur.close()
+            conn.close()
+
+        return jsonify(result)
 
 @app.post('/units')
 def postUnits():
