@@ -31,3 +31,7 @@ export type DegreeEntryProps = {
 export type SemesterBlockProps = {
   cards: UnitCardProps[];
 };
+
+export type UnitEntryProps = {
+  subjects: Array<string>;
+};

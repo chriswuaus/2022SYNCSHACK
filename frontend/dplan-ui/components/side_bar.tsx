@@ -4,7 +4,6 @@ import Vercel from "../public/vercel.svg";
 import Butt from "./butt";
 import Search from "./search";
 
-
 const SideBar = (props: SideBarProps) => {
   return (
     <aside className={styles.aside}>
