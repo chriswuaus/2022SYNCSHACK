@@ -4,9 +4,9 @@ import UnitCard from "./unit_card"
 
 const SemesterBlock = (props: SemesterBlockProps) => {
     return <div className={styles.rounded}>
-        {props.cards.map(({ unitCode, unitName, unitRating }) =>
+        {props.cards.map(({ unitCode, unitName, unitRating }, index) =>
             <div className={styles.coursetile}>
-                <UnitCard unitName={unitName} unitCode={unitCode} unitRating={unitRating} />
+                <UnitCard key={index} unitName={unitName} unitCode={unitCode} unitRating={unitRating} />
             </div>)}
     </div>
 }

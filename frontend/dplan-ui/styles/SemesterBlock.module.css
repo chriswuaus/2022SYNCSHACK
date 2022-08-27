@@ -4,6 +4,7 @@
     border-radius: 30px;
     background-color: #dbdbdb;
     padding: 1em;
+    box-shadow: 2px 2px 5px grey;
 }
 
 .coursetile {

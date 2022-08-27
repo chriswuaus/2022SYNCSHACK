@@ -6,7 +6,8 @@ import Plus from "../components/plus";
 
 import styles from "../styles/Home.module.css";
 import SemesterBlock from "../components/semester_block";
-import { SemesterBlockProps, UnitCardProps } from "../components/components.types";
+import { UnitCardProps } from "../components/components.types";
+import DegreeEntry from "../components/degree_entry";
 
 const Home: NextPage = () => {
   const cardProps: UnitCardProps[] =
@@ -43,8 +44,9 @@ const Home: NextPage = () => {
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis dolorem fuga nobis cupiditate. Omnis voluptatem, corrupti eos, tempore laudantium ratione atque at obcaecati minima recusandae veritatis accusamus dolorem, praesentium eum nobis deserunt consequuntur sint corporis qui ea aut dolor. Sapiente alias ipsam, animi nesciunt distinctio optio pariatur qui dignissimos, dicta aliquam et natus ex totam mollitia. Deleniti culpa, sed repudiandae adipisci aspernatur dolor dolorum harum magni. Voluptas est cupiditate, quia necessitatibus iusto totam temporibus. Debitis, quisquam dolor. Alias exercitationem, dolorem neque autem suscipit praesentium quae et molestias cupiditate doloremque excepturi nulla porro adipisci nesciunt amet tempora perspiciatis tenetur qui asperiores.
         </p>
-          <SemesterBlock cards={cardProps} />
+        <SemesterBlock cards={cardProps} />
         <Plus />
+        <DegreeEntry />
       </main>
     </div>
   );
