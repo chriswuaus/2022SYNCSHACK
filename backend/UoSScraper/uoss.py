@@ -90,11 +90,6 @@ class UoSScraper:
         req_spl3 = req_spl2.split("and")
         return req_spl3
 
-    #scrapes semesters in which the unit is available for (including intensives)
-    def get_offering_periods():
-        tree = self.uos_url_tree_setup()
-        req = tree.xpath
-
     #set modeURL to CC for scraping mode specific information (extension) i.e. semester weekly schedule, assessment schedule
     def set_cc_url(self):
         tree = self.uos_url_tree_setup()
