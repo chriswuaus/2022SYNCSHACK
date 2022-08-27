@@ -87,11 +87,9 @@ return:
 POST /groups
 Create a new group
 params:
-	group_id: string
 	name: string
 returns:
 {
-	id: "cf80b95b-8010-439f-bc34-48b9586aadbe",
 	name: "Table S"
 }
 
