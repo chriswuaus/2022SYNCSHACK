@@ -1,8 +1,18 @@
 .button {
-  /* display: inline-flex; */
-  background-color: greenyellow;
-  color: brown;
-  border-radius: 25px;
+  display: flex;
+  background-color: rgb(134, 189, 51);
+  color: white;
+  border-radius: 10px;
   font-size: 50px;
   border: None;
+  height: 50px;
+  width: 50px;
+  justify-content: center;
+  align-content: center;
+  padding: 0px;
+  line-height: 50px;
+}
+
+.button:hover {
+  background-color: rgb(112, 152, 51);
 }
