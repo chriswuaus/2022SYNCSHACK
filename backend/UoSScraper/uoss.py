@@ -4,16 +4,16 @@ import sys
 
 class UoSScraper:
     def __init__(self) -> None:
-        self.uosURL = None
-        self.modeURL = "https://www.sydney.edu.au"
+        self.uos_url = None
+        self.mode_url = "https://www.sydney.edu.au"
 
     
     def set_cur_url(self, new_url: str):
-            self.uosURL = new_url
+            self.uos_url = new_url
     
     #Sets up the tree object that I xpath (idk how to describe it properly)
     def uos_url_tree_setup(self):
-        req = requests.get(self.uosURL)
+        req = requests.get(self.uos_url)
         tree = html.fromstring(req.content)
         return tree
 
@@ -21,6 +21,12 @@ class UoSScraper:
     def get_unit_name(self):
         tree = self.uos_url_tree_setup()
         req = tree.xpath("//h1[@class='pageTitle b-student-site__section-title']/text()")
+        return req[0]
+
+    #scrapes unit description
+    def get_unit_desc(self):
+        tree = self.uos_url_tree_setup()
+        req = tree.xpath("//div[@class='pageTitleModule']//div[@class='b-summary']/p/text()")
         return req[0]
 
     #scrapes unit code
@@ -63,13 +69,13 @@ class UoSScraper:
     def set_cc_url(self):
         tree = self.uos_url_tree_setup()
         req = tree.xpath("//div[@class='bodyContentContainer']//div[@id='currentOutlines']/ul/li[1]//@href")
-        self.modeURL = self.modeURL + req[0]
+        self.modeURL = self.mode_url + req[0]
 
         return self.modeURL
     
     #sets up the tree for use in scraping outline content (extension)
     def mode_url_tree_setup(self):
-        req = requests.get(self.modeURL)
+        req = requests.get(self.mode_url)
         tree = html.fromstring(req.content)
         return tree
 
@@ -79,6 +85,7 @@ class UoSScraper:
 # t1 = UoSScraper()
 # t1.set_cur_url("https://www.sydney.edu.au/units/ISYS2120")
 # print(t1.get_unit_name())
+# print(t1.get_unit_desc())
 # print(t1.get_unit_code())
 # print(t1.get_unit_academic_unit())
 # print(t1.get_unit_cp_val())
