@@ -1,6 +1,3 @@
--- docker exec -it ... /bin/bash
--- psql postgres postgres -f /scripts/make_tables.sql
-
 CREATE TABLE groups (
     id UUID PRIMARY KEY,
     group_name VARCHAR(200) NOT NULL
