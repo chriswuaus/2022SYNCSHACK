@@ -72,18 +72,20 @@ class UoSScraper:
         req = requests.get(self.modeURL)
         tree = html.fromstring(req.content)
         return tree
+
+    
     
 
-t1 = UoSScraper()
-t1.set_cur_url("https://www.sydney.edu.au/units/ISYS2120")
-print(t1.get_unit_name())
-print(t1.get_unit_code())
-print(t1.get_unit_academic_unit())
-print(t1.get_unit_cp_val())
-print(t1.get_unit_prereq())
-print(t1.get_unit_coreq())
-print(t1.get_unit_prohib())
-print(t1.set_cc_url())
+# t1 = UoSScraper()
+# t1.set_cur_url("https://www.sydney.edu.au/units/ISYS2120")
+# print(t1.get_unit_name())
+# print(t1.get_unit_code())
+# print(t1.get_unit_academic_unit())
+# print(t1.get_unit_cp_val())
+# print(t1.get_unit_prereq())
+# print(t1.get_unit_coreq())
+# print(t1.get_unit_prohib())
+# print(t1.set_cc_url())
 
 
 
