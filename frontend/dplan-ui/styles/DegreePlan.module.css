@@ -1,0 +1,12 @@
+.container {
+    padding: 0 2rem;
+}
+
+.main {
+    margin-left: 10em;
+    padding: 2em;
+}
+
+.padded {
+    margin: 4em;
+}

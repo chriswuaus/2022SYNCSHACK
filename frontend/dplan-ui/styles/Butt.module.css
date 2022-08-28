@@ -1,0 +1,15 @@
+.button {
+  background-color: transparent;
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  border: None;
+}
+
+.button svg {
+  fill: white;
+}
+
+.button-highlighted {
+  background-color: rgb(255, 213, 0);
+}
