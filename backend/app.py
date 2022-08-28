@@ -49,6 +49,42 @@ def getUnits():
 
         return jsonify(result)
 
+@app.get('/units/code/<unit_code>')
+def getUnitByCode(unit_code):
+    print("unit get")
+    try:
+        conn = psycopg2.connect(
+            dbname="postgres", user="postgres", password="postgres", host='0.0.0.0', port=5432)
+        cur = conn.cursor()
+
+        cur.execute("""
+            SELECT
+                id, 
+                unit_name AS name, 
+                unit_code AS code, 
+                unit_level AS level, 
+                credit_points AS cp,
+                unit_description AS description,
+                academic_unit,
+                available_semesters
+            FROM units
+            WHERE unit_code = %s
+            """, (unit_code,))
+
+        colnames = [desc[0] for desc in cur.description]
+        row = cur.fetchone()
+        result = {colnames[i]: row[i] for i in range(len(colnames))}
+
+    except (Exception, psycopg2.Error) as error:
+        result = {'error': str(error)}
+
+    finally:
+        # closing database connection.
+        if conn:
+            cur.close()
+            conn.close()
+
+        return jsonify(result)
 
 @app.post('/units')
 def postUnits():
@@ -183,6 +219,36 @@ def getGroups():
 
         return jsonify(result)
 
+@app.get('/groups/group/<name>')
+def getGroupsByName(name):
+    try:
+        conn = psycopg2.connect(
+            dbname="postgres", user="postgres", password="postgres", host='0.0.0.0', port=5432)
+        cur = conn.cursor()
+
+        cur.execute("""
+            SELECT
+                id, 
+                group_name AS name
+            FROM groups
+            WHERE group_name = %s
+            """, (name,))
+
+        colnames = [desc[0] for desc in cur.description]
+        row = cur.fetchone()
+        result = {colnames[i]: row[i] for i in range(len(colnames))}
+
+    except (Exception, psycopg2.Error) as error:
+        result = {'error': str(error)}
+
+    finally:
+        # closing database connection.
+        if conn:
+            cur.close()
+            conn.close()
+
+        return jsonify(result)
+
 
 @app.post('/groups')
 def postGroups():
@@ -214,7 +280,7 @@ def postGroups():
         return result
 
 
-@app.get('/unit/<unit_id>/prerequisites')
+@app.get('/units/<unit_id>/prerequisites')
 def getPrerequisites(unit_id):
     try:
         conn = psycopg2.connect(
@@ -224,8 +290,8 @@ def getPrerequisites(unit_id):
         cur.execute("""
             SELECT prerequisite_list
             FROM unit_prerequisites
-            WHERE unit_prerequisites.unit_id = unit_id
-            """)
+            WHERE unit_prerequisites.unit_id = %s
+            """, (unit_id,))
 
         colnames = [desc[0] for desc in cur.description]
         rows = cur.fetchall()
@@ -277,7 +343,7 @@ def postPrerequisites(unit_id):
         return result
 
 
-@app.get('/unit/<unit_id>/prohibitions')
+@app.get('/units/<unit_id>/prohibitions')
 def getProhibitions(unit_id):
     try:
         conn = psycopg2.connect(
@@ -287,8 +353,8 @@ def getProhibitions(unit_id):
         cur.execute("""
             SELECT prohibition_list
             FROM unit_prohibitions
-            WHERE prohibition_list.unit_id = unit_id
-            """)
+            WHERE unit_prohibitions.unit_id = %s
+            """, (unit_id,))
 
         colnames = [desc[0] for desc in cur.description]
         rows = cur.fetchall()
@@ -340,7 +406,7 @@ def postProhibitions(unit_id):
         return result
 
 
-@app.get('/unit/<unit_id>/corequisites')
+@app.get('/units/<unit_id>/corequisites')
 def getCorequisites(unit_id):
     try:
         conn = psycopg2.connect(
@@ -350,8 +416,8 @@ def getCorequisites(unit_id):
         cur.execute("""
             SELECT corequisite_list
             FROM unit_corequisites
-            WHERE unit_corequisites.unit_id = unit_id
-            """)
+            WHERE unit_corequisites.unit_id = %s
+            """, (unit_id,))
 
         colnames = [desc[0] for desc in cur.description]
         rows = cur.fetchall()
@@ -402,8 +468,7 @@ def postCorequisites(unit_id):
 
         return result
 
-
-@app.get('/unit/<unit_id>/assumed_knowledge')
+@app.get('/units/<unit_id>/assumed_knowledge')
 def getAssumedKnowledge(unit_id):
     try:
         conn = psycopg2.connect(
@@ -411,10 +476,10 @@ def getAssumedKnowledge(unit_id):
         cur = conn.cursor()
 
         cur.execute("""
-            SELECT assumed_knowledge
+            SELECT assumed_knowledge_list
             FROM unit_assumed_knowledge
-            WHERE unit_assumed_knowledge.unit_id = unit_id
-            """)
+            WHERE unit_assumed_knowledge.unit_id = %s
+            """, (unit_id,))
 
         colnames = [desc[0] for desc in cur.description]
         rows = cur.fetchall()
