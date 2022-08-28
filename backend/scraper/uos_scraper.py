@@ -58,6 +58,8 @@ class UoSScraper:
     def get_unit_academic_unit(self):
         tree = self.uos_url_tree_setup()
         req = tree.xpath("//div[@id='academicDetails']//tbody/tr[2]/td/text()")
+        if len(req) < 0:
+            return ""
         return req[0]
     
     #scrapes credit point value

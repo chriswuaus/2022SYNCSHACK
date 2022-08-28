@@ -8,12 +8,11 @@ const UnitCard = (props: UnitCardProps) => {
     <div className={styles.container}>
       <div className={styles.code}>{props.unitCode}</div>
       <div className={styles.name}>{props.unitName}</div>
-      <div>
-        <Star />
-        <Star />
-        <Star />
-        <Star />
-        <Star />
+      <div className={styles.cont}>
+        {Array.from(Array(props.unitRating).keys()).map((_) => (
+          <Star />
+        ))}
+        <div className={styles.number}>(3)</div>
       </div>
     </div>
   );

@@ -64,7 +64,7 @@ for cusp in cusp_list:
                         if elective_unit == "COMP2022":
                             continue
                         endpoint = uos_base + elective_unit
-                        post_data(uos, blahaj, True, unit, endpoint, groups_created)
+                        post_data(uos, blahaj, True, table_name, endpoint, groups_created)
                         units_posted.append(elective_unit)
                 else:
                     if unit in units_posted:
