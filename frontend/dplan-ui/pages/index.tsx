@@ -15,8 +15,9 @@ const Home: NextPage = () => {
   const [degreePlans, setDegreePlans] = useState<DegreeProps[]>([]);
   const addDegree = (degree: DegreeProps) => {
     setDegreePlans([...degreePlans, degree]);
+    setShowModal(false)
   };
-  fetch("http://10.16.10.244:5000/units").then((v) => console.log(v));
+  // fetch("http://10.16.10.244:5000/units").then((v) => console.log(v));
 
   return (
     <div>
