@@ -3,43 +3,48 @@ import { SemesterBlockProps, UnitCardProps } from "../components/components.type
 export const data : UnitCardProps[][]= [
   [
     {
-      unitCode: "rgdfghg",
-      unitName: "systems programming",
+      unitCode: "INFO1110",
+      unitName: "Introduction to Programming",
       unitRating: 5,
     },
     {
-      unitCode: "rgdfghg",
-      unitName: "systems programming",
-      unitRating: 5,
+      unitCode: "MATH1021",
+      unitName: "Introduction to OOP",
+      unitRating: 3,
     },
     {
-      unitCode: "rgdfghg",
-      unitName: "systems programming",
-      unitRating: 5,
+      unitCode: "MATH1002",
+      unitName: "Systems Programming",
+      unitRating: 3,
     },
     {
-      unitCode: "rgdfghg",
-      unitName: "systems programming",
-      unitRating: 5,
+      unitCode: "INFO1111",
+      unitName: "Models of Computation",
+      unitRating: 3,
+    },
+    {
+      unitCode: "DATA1001",
+      unitName: "Models of Computation",
+      unitRating: 3,
     },
   ],  [
     {
-      unitCode: "rgdfghg",
+      unitCode: "MATH1064",
+      unitName: "Data Structures and Algorithms",
+      unitRating: 5,
+    },
+    {
+      unitCode: "INFO1112",
       unitName: "systems programming",
       unitRating: 5,
     },
     {
-      unitCode: "rgdfghg",
+      unitCode: "ELEC1601",
       unitName: "systems programming",
       unitRating: 5,
     },
     {
-      unitCode: "rgdfghg",
-      unitName: "systems programming",
-      unitRating: 5,
-    },
-    {
-      unitCode: "rgdfghg",
+      unitCode: "INFO1113",
       unitName: "systems programming",
       unitRating: 5,
     },
